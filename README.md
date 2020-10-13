@@ -21,7 +21,7 @@ Usage of ./diskMonitor-linux:
 ```
 
 If you specify `-webhook` argument, you will be notified in Telegram via CodeX Bot.
-You can get `webhook` from [@codex-bot](https://t.me/@codex-bot) as written in [CodeX Bot Docs](https://github.com/codex-bot/notify#getting-started).
+You can get `webhook` from [@codex-bot](https://t.me/codex_bot) as written in [CodeX Bot Docs](https://github.com/codex-bot/notify#getting-started).
 
 Output
 -----
@@ -41,3 +41,18 @@ Installation
 ```
 go get github.com/n0str/go-disk-monitor
 ```
+
+You can also download release files from [GitHub](https://github.com/n0str/go-disk-monitor/releases/tag/1.0)
+
+Build
+-----
+
+Clone the repository, compile binary for linux or macos and run.
+
+```
+git clone https://github.com/n0str/go-disk-monitor
+cd go-disk-monitor
+GOOS=linux go build -o diskMonitor-linux .
+```
+
+Now you can run the binary file `diskMonitor-linux`
