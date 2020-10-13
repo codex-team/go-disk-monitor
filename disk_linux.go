@@ -4,25 +4,22 @@ package main
 
 import "syscall"
 
+// Data amount constants
 const (
-	// Bytes
-	B = 1
-	// Kilobytes
-	KB = 1024 * B
-	// Megabytes
-	MB = 1024 * KB
-	// Gigabytes
-	GB = 1024 * MB
+	B  = 1         // Bytes
+	KB = 1024 * B  // Kilobytes
+	MB = 1024 * KB // Megabytes
+	GB = 1024 * MB // Gigabytes
 )
 
-// structure with information about disk usage
+// DiskStatus - structure with information about disk usage
 type DiskStatus struct {
 	All  uint64 `json:"all"`
 	Used uint64 `json:"used"`
 	Free uint64 `json:"free"`
 }
 
-// disk usage of path/disk
+// DiskUsage - disk usage of path/disk
 func DiskUsage(path string) (disk DiskStatus) {
 	fs := syscall.Statfs_t{}
 	err := syscall.Statfs(path, &fs)

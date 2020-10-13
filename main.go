@@ -13,7 +13,7 @@ var alertLevel = flag.Int("alert", 90, "disk usage percentage to trigger notific
 var path = flag.String("path", "/", "path to the disk volume")
 var debug = flag.Bool("debug", false, "show debug information")
 
-// get current server hostname
+// Hostname - get current server hostname
 func Hostname() string {
 	name, err := os.Hostname()
 	if err != nil {
