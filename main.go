@@ -10,7 +10,7 @@ import (
 
 var codexBotURL = flag.String("webhook", "", "notification URI from CodeX Bot")
 var alertLevel = flag.Int("alert", 90, "disk usage percentage to trigger notification")
-var path  = flag.String("path", "/", "path to the disk volume")
+var path = flag.String("path", "/", "path to the disk volume")
 var debug = flag.Bool("debug", false, "show debug information")
 
 // get current server hostname
@@ -33,7 +33,7 @@ func main() {
 		log.Printf("Percent: %.0f%%\n", 100*(float64(disk.Used)/float64(disk.All)))
 	}
 
-	percentUsed := int(100*(float64(disk.Used)/float64(disk.All)))
+	percentUsed := int(100 * (float64(disk.Used) / float64(disk.All)))
 	hostname := Hostname()
 
 	if percentUsed >= *alertLevel {

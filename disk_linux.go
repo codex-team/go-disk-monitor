@@ -5,12 +5,17 @@ package main
 import "syscall"
 
 const (
-	B  = 1
+	// Bytes
+	B = 1
+	// Kilobytes
 	KB = 1024 * B
+	// Megabytes
 	MB = 1024 * KB
+	// Gigabytes
 	GB = 1024 * MB
 )
 
+// structure with information about disk usage
 type DiskStatus struct {
 	All  uint64 `json:"all"`
 	Used uint64 `json:"used"`
@@ -29,4 +34,3 @@ func DiskUsage(path string) (disk DiskStatus) {
 	disk.Used = disk.All - disk.Free
 	return
 }
-
