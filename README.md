@@ -4,7 +4,7 @@ go-disk-monitor
 Disk monitoring and alerts via CodeX Bot.
 
 [![push](https://github.com/n0str/go-disk-monitor/workflows/push/badge.svg?branch=master&event=push)](https://github.com/n0str/go-disk-monitor/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/n0str/go-disk-monitor)](https://goreportcard.com/report/github.com/n0str/go-disk-monitor)
+[![Go Report Card](https://goreportcard.com/badge/github.com/n0str/go-disk-monitor?)](https://goreportcard.com/report/github.com/n0str/go-disk-monitor)
 
 Usage
 -----
