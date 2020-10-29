@@ -26,8 +26,13 @@ func DiskUsage(path string) (disk DiskStatus) {
 	if err != nil {
 		return
 	}
+
+	// calculate number of blocks that are reserved by the filesystem
+	fsReservedBlocks := fs.Bfree - fs.Bavail
+
 	disk.All = fs.Blocks * uint64(fs.Bsize)
 	disk.Free = fs.Bavail * uint64(fs.Bsize)
-	disk.Used = disk.All - disk.Free
+	disk.Used = (fs.Blocks-fsReservedBlocks)*uint64(fs.Bsize) - disk.Free
+
 	return
 }
