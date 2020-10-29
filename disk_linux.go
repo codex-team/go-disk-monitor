@@ -2,7 +2,9 @@
 
 package main
 
-import "syscall"
+import (
+	"syscall"
+)
 
 // Data amount constants
 const (
@@ -23,11 +25,17 @@ type DiskStatus struct {
 func DiskUsage(path string) (disk DiskStatus) {
 	fs := syscall.Statfs_t{}
 	err := syscall.Statfs(path, &fs)
+
 	if err != nil {
 		return
 	}
+
+	// calculate number of blocks that are reserved by the filesystem
+	fsReservedBlocks := fs.Bfree - fs.Bavail
+
 	disk.All = fs.Blocks * uint64(fs.Bsize)
-	disk.Free = fs.Bfree * uint64(fs.Bsize)
-	disk.Used = disk.All - disk.Free
+	disk.Free = fs.Bavail * uint64(fs.Bsize)
+	disk.Used = (fs.Blocks-fsReservedBlocks)*uint64(fs.Bsize) - disk.Free
+
 	return
 }

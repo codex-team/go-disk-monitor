@@ -26,19 +26,20 @@ func Hostname() string {
 func main() {
 	flag.Parse()
 	disk := DiskUsage(*path)
+
+	percentUsed := 100 - 100*(float64(disk.Free)/float64(disk.All))
 	if *debug {
 		log.Printf("All: %.2f GB\n", float64(disk.All)/float64(GB))
 		log.Printf("Used: %.2f GB\n", float64(disk.Used)/float64(GB))
 		log.Printf("Free: %.2f GB\n", float64(disk.Free)/float64(GB))
-		log.Printf("Percent: %.0f%%\n", 100*(float64(disk.Used)/float64(disk.All)))
+		log.Printf("Percent: %.0f%%\n", percentUsed)
 	}
 
-	percentUsed := int(100 * (float64(disk.Used) / float64(disk.All)))
 	hostname := Hostname()
 
-	if percentUsed >= *alertLevel {
+	if int(percentUsed) >= *alertLevel {
 
-		alertMessage := fmt.Sprintf("🔥🚒 Running out of space `%.2fGB(%d%%)` on server %s", float64(disk.Free)/float64(GB), percentUsed, hostname)
+		alertMessage := fmt.Sprintf("🔥🚒 Running out of space `%.2fGB(%.0f%%)` on server %s", float64(disk.Free)/float64(GB), percentUsed, hostname)
 
 		// notify via CodeX Bot
 		if *codexBotURL != "" {
